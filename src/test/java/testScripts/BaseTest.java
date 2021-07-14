@@ -17,14 +17,25 @@ import java.util.Properties;
 public class BaseTest {
     Properties properties=new Properties();
     public static WebDriver driver;
+
+    /**
+     * This constructor will load the websiteDetails property
+     * file
+     * @throws FileNotFoundException
+     */
     public BaseTest() throws FileNotFoundException {
-        FileInputStream fileInputStream=new FileInputStream("/Users/prajwal/Desktop/testvagrant /assignment projects/Design-Pattern-Practice/src/main/java/properties/websiteDetails.properties");
+        FileInputStream fileInputStream=new FileInputStream("/Users/prajwal/Desktop/testvagrant /assignment projects/Design-Pattern-Practice/src/test/java/properties/websiteDetails.properties");
         try {
             properties.load(fileInputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    /**
+     * This method initializes the driver and the browser required
+     * and accepts the cookies at the start of the page
+     */
     public void initialization(){
         String browser=properties.getProperty("browser");
         if(browser.equals("chrome")){

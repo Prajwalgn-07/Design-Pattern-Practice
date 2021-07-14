@@ -46,13 +46,27 @@ public class HomePage extends CommonActions {
     @FindBy(xpath = "//*[@id=\"app\"]/div/div[1]/main/div[2]/div[4]/div/div/div[1]/section/form/div[5]/button")
     WebElement getTimeTickets;
     PropertyReader propertyReader=new PropertyReader();
+
+    /**
+     * This will set the from place
+     */
     public void setFrom(){
         CommonActions.click(from);
         CommonActions.click(leeds);
     }
+
+    /**
+     * This will set the to place
+     */
     public void setTo(){
         CommonActions.click(newCastle);
     }
+
+    /**
+     * This will select the via based on
+     * the information in travelInformation property
+     * file
+     */
     public void selectVia(){
         String via=propertyReader.getProperty("via");
         switch (via) {
@@ -63,6 +77,10 @@ public class HomePage extends CommonActions {
             default -> CommonActions.click(singleElement);
         }
     }
+
+    /**
+     * This will select the leaving day of the user
+     */
     public void selectOutDay(){
         String out=propertyReader.getProperty("OUT");
         if(out.equals("today")){
@@ -71,6 +89,10 @@ public class HomePage extends CommonActions {
             CommonActions.click(tomorrow);
         }
     }
+
+    /**
+     * This will select the return day of the user
+     */
     public void selectReturnDay(){
         String returnDay=propertyReader.getProperty("returnDay");
         if(returnDay.equals("NextDay")){
@@ -79,27 +101,35 @@ public class HomePage extends CommonActions {
             CommonActions.click(sameDay);
         }
     }
+
+    /**
+     * This method will select the leaving time and arriving time
+     */
     public void selectTimings(){
         String outTimings=propertyReader.getProperty("outTimings");
         String[] splitOutTimings=outTimings.split(":");
         String via=propertyReader.getProperty("via");
         if(via.equals("OneWay")){
-            CommonActions.select1(hourInOut,splitOutTimings[0]);
-            CommonActions.select1(minutesInOut,splitOutTimings[1]);
+            CommonActions.select(hourInOut,splitOutTimings[0]);
+            CommonActions.select(minutesInOut,splitOutTimings[1]);
         }
         else if(via.equals("Return")){
             String returnTimings=propertyReader.getProperty("returnTimings");
             String[] splitReturnTimings=returnTimings.split(":");
-            CommonActions.select1(hourInOut,splitOutTimings[0]);
-            CommonActions.select1(minutesInOut,splitOutTimings[1]);
-            CommonActions.select1(hourInReturn,splitReturnTimings[0]);
-            CommonActions.select1(minutesInReturn,splitReturnTimings[1]);
+            CommonActions.select(hourInOut,splitOutTimings[0]);
+            CommonActions.select(minutesInOut,splitOutTimings[1]);
+            CommonActions.select(hourInReturn,splitReturnTimings[0]);
+            CommonActions.select(minutesInReturn,splitReturnTimings[1]);
         }
         else if(via.equals("OpenReturn")){
-            CommonActions.select1(hourInOut,splitOutTimings[0]);
-            CommonActions.select1(minutesInOut,splitOutTimings[1]);
+            CommonActions.select(hourInOut,splitOutTimings[0]);
+            CommonActions.select(minutesInOut,splitOutTimings[1]);
         }
     }
+
+    /**
+     * This method will leads us to get time and tickets page
+     */
     public void selectGetTimings(){
         CommonActions.click(getTimeTickets);
     }

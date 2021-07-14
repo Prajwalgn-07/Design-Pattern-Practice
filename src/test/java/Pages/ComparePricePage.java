@@ -9,6 +9,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.CommonActions;
 
+/**
+ * This class has the continue button selecting
+ * method and getAmount method
+ */
 public class ComparePricePage extends CommonActions {
     public ComparePricePage(WebDriver driver){
         PageFactory.initElements(driver,this);

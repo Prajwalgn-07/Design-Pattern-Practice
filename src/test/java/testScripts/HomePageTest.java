@@ -17,14 +17,17 @@ OptionsPage optionsPage;
 public HomePageTest() throws FileNotFoundException {
     super();
 }
-@BeforeMethod
+
+    @BeforeMethod
 public void setup() throws FileNotFoundException {
     initialization();
     homePage=new HomePage(driver);
     comparePricePage=new ComparePricePage(driver);
     optionsPage=new OptionsPage(driver);
 }
-@Test
+
+
+    @Test
 public void test(){
     homePage.setFrom();
     homePage.setTo();
@@ -36,7 +39,8 @@ public void test(){
     comparePricePage.selectContinue(driver);
     comparePricePage.getAmount();
 }
-@AfterMethod
+
+    @AfterMethod
 public void tearDown(){
     driver.quit();
 }
